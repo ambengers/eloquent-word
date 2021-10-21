@@ -2,6 +2,7 @@
     "name": "ambengers/eloquent-word",
     "description": "Laravel package for creating Word documents with Eloquent ORM dependencies.",
     "license": "MIT",
+    "type": "project",
     "authors": [
         {
             "name": "Marvin Quezon",
@@ -12,6 +13,7 @@
     "keywords": ["Laravel", "Eloquent", "Word"],
     "require": {
         "illuminate/support": "~7|~8",
+        "phpoffice/phpword": "^0.17.0",
         "spatie/laravel-medialibrary": "^7.5"
     },
     "require-dev": {
