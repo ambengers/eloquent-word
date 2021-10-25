@@ -14,7 +14,7 @@ abstract class AbstractEloquentWord
 
     protected $word;
 
-    protected $filename = 'word_document';
+    protected $filename = 'document';
 
     protected $extension = 'docx';
 
