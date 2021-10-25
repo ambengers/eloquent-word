@@ -25,7 +25,10 @@ class EloquentWordTest extends BaseTestCase
 
     public function tearDown() : void
     {
-        (new Filesystem)->cleanDirectory(storage_path());
+        $filesystem = new Filesystem;
+
+        $filesystem->cleanDirectory(storage_path('app'));
+        $filesystem->cleanDirectory(storage_path('temp'));
 
         parent::tearDown();
     }
