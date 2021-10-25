@@ -48,7 +48,7 @@ abstract class AbstractEloquentWord
 
         return new Response(file_get_contents($temporaryPath), 200, [
             'Content-Type' => 'application/octet-stream',
-            'Content-Disposition' => 'attachment; filename="'.$this->getFilenameWithExtension().'"'
+            'Content-Disposition' => 'attachment; filename="'.$this->getFilenameWithExtension().'"',
         ]);
     }
 
@@ -69,10 +69,10 @@ abstract class AbstractEloquentWord
     /**
      * Set the document extension.
      *
-     * @param  string $extension
+     * @param  string  $extension
      * @return string
      */
-    public function extension($extension = 'docx') : string
+    public function extension($extension = 'docx'): string
     {
         $this->extension = $extension;
 
@@ -94,9 +94,9 @@ abstract class AbstractEloquentWord
      *
      * @return string
      */
-    public function getFilenameWithExtension() : string
+    public function getFilenameWithExtension(): string
     {
-        return $this->filename . '.' . $this->extension;
+        return $this->filename.'.'.$this->extension;
     }
 
     protected function loadSettings()
@@ -104,9 +104,9 @@ abstract class AbstractEloquentWord
         Settings::setOutputEscapingEnabled(true);
     }
 
-    abstract public function getView() : string;
+    abstract public function getView(): string;
 
-    abstract public function getData() : array;
+    abstract public function getData(): array;
 
     /**
      * Determine if class is interacting with media library.
@@ -121,8 +121,8 @@ abstract class AbstractEloquentWord
     /**
      * Dynamically handle method calls.
      *
-     * @param  string $method
-     * @param  array $parameter
+     * @param  string  $method
+     * @param  array  $parameter
      * @return self
      */
     public function __call($method, $parameter)
