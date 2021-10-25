@@ -30,9 +30,9 @@ jobs:
       - run: sudo apt update
       - run: sudo apt install -y libmagickwand-dev --no-install-recommends
       - run: sudo rm -rf /var/lib/apt/lists/*
-      - run: sudo docker-php-ext-install zip
       - run: sudo pecl install imagick
-      - run: docker-php-ext-enable imagick
+      - run: sudo docker-php-ext-install zip
+      - run: sudo docker-php-ext-enable imagick
 
       # Download and cache dependencies
       - restore_cache:
