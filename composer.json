@@ -37,10 +37,7 @@
         "laravel": {
             "providers": [
                 "Ambengers\\EloquentWord\\EloquentWordServiceProvider"
-            ],
-            "aliases": {
-                "EloquentPdf": "Ambengers\\EloquentWord\\Facades\\EloquentPdf"
-            }
+            ]
         }
     }
 }
