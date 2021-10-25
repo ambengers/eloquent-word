@@ -3,6 +3,7 @@
 namespace Ambengers\EloquentWord;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Http\Response;
 use Illuminate\Support\Traits\ForwardsCalls;
 use PhpOffice\PhpWord\IOFactory;
 use PhpOffice\PhpWord\PhpWord;
@@ -32,7 +33,7 @@ abstract class AbstractEloquentWord
             $this->ensureFileAdderInstance();
         }
 
-        $this->bootSettings();
+        $this->loadSettings();
     }
 
     public function handle()
@@ -45,7 +46,10 @@ abstract class AbstractEloquentWord
 
         $temporaryPath = $this->saveTemporaryFile();
 
-        return response()->download($temporaryPath);
+        return new Response(file_get_contents($temporaryPath), 200, [
+            'Content-Type' => 'application/octet-stream',
+            'Content-Disposition' => 'attachment; filename="'.$this->getFilenameWithExtension().'"'
+        ]);
     }
 
     public function model(Model $model)
@@ -62,19 +66,40 @@ abstract class AbstractEloquentWord
         return $this;
     }
 
-    public function extension($extension = 'docx')
+    /**
+     * Set the document extension.
+     *
+     * @param  string $extension
+     * @return string
+     */
+    public function extension($extension = 'docx') : string
     {
         $this->extension = $extension;
 
         return $this;
     }
 
-    public function getFilenameWithExtension()
+    /**
+     * Get the document filename.
+     *
+     * @return string
+     */
+    public function getFilename(): string
+    {
+        return $this->filename;
+    }
+
+    /**
+     * Get the document filename with extension.
+     *
+     * @return string
+     */
+    public function getFilenameWithExtension() : string
     {
         return $this->filename . '.' . $this->extension;
     }
 
-    protected function bootSettings()
+    protected function loadSettings()
     {
         Settings::setOutputEscapingEnabled(true);
     }
@@ -123,7 +148,7 @@ abstract class AbstractEloquentWord
 
     protected function getTemporaryDirectory()
     {
-        return config('eloquent_word.temporary_directory', storage_path('temp/word'));
+        return config('eloquent_word.temporary_directory') ?? storage_path('temp/word');
     }
 
     protected function saveTemporaryFile()
