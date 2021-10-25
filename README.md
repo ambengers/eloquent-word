@@ -6,7 +6,7 @@ Uses [PHPOffice/PHPWord](https://github.com/PHPOffice/PHPWord) package to genera
 
 | Version  | Medialibrary |
 |:---------|:-------------|
-| v1.*     |^ 7.5         |
+| v1.*     |~ 7.20        |
 | v2.*     |^ 8.0         |
 | v3.*     |^ 9.0         |
 
