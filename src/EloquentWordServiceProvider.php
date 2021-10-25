@@ -5,7 +5,7 @@ namespace Ambengers\EloquentWord;
 use Ambengers\EloquentWord\Console\EloquentWordMakeCommand;
 use Illuminate\Support\ServiceProvider;
 
-class EloquentPdfServiceProvider extends ServiceProvider
+class EloquentWordServiceProvider extends ServiceProvider
 {
     /**
      * Perform post-registration booting of services.
