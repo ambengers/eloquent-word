@@ -2,6 +2,8 @@
 This package provides an elegant way to generate Word documents with Eloquent Models.
 Uses [PHPOffice/PHPWord](https://github.com/PHPOffice/PHPWord) package to generate Word documents and [Laravel Medialibrary](https://github.com/spatie/laravel-medialibrary) to associate Word documents as eloquent model media.
 
+[![CircleCI](https://circleci.com/gh/ambengers/eloquent-word/tree/master.svg?style=svg)](https://circleci.com/gh/ambengers/eloquent-word/tree/master)
+
 ## Medialibrary Compatibility
 
 | Version  | Medialibrary |
