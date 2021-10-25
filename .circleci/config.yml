@@ -28,7 +28,9 @@ jobs:
 
       - run: sudo apt update # PHP CircleCI 2.0 Configuration File# PHP CircleCI 2.0 Configuration File sudo apt install zlib1g-dev libsqlite3-dev
       - run: sudo docker-php-ext-install zip
-      - run: sudo docker-php-ext-install imagick
+      - run: apt-get update && apt-get install -y libmagickwand-dev --no-install-recommends && rm -rf /var/lib/apt/lists/*
+      - run: printf "\n" | pecl install imagick
+      - run: docker-php-ext-enable imagick
 
       # Download and cache dependencies
       - restore_cache:
