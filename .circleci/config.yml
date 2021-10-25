@@ -27,7 +27,9 @@ jobs:
       - checkout
 
       # PHP CircleCI 2.0 Configuration File# PHP CircleCI 2.0 Configuration File sudo apt install zlib1g-dev libsqlite3-dev
-      - run: sudo apt update && apt install -y libmagickwand-dev --no-install-recommends && rm -rf /var/lib/apt/lists/*
+      - run: sudo apt update
+      - run: apt install -y libmagickwand-dev --no-install-recommends
+      - run: rm -rf /var/lib/apt/lists/*
       - run: sudo docker-php-ext-install zip
       - run: sudo pecl install imagick
       - run: docker-php-ext-enable imagick
