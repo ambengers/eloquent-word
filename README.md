@@ -68,9 +68,8 @@ Unlike PDF templates that uses html, Word templates are created using php script
 
 ```php
 @php
-
-// You automatically have access to $word variable within your
-// view template, which is an instance of PhpWord::class
+// You automatically have access to $word within your view template,
+// which is an instance of \PhpOffice\PhpWord\PhpWord::class...
 $section = $word->addSection();
 
 $section->addTitle($title);
@@ -78,7 +77,6 @@ $section->addTitle($title);
 $section->addTextBreak();
 
 $section->addText($body);
-
 @endphp
 ```
 Within your view template, you automatically have access to `$word` variable which will give you an instance of `PhpOffice\PhpWord\PhpWord` class. This will allow you to get started formatting your Word document.
