@@ -4,8 +4,8 @@ namespace Ambengers\EloquentWord;
 
 use Ambengers\EloquentWord\Exceptions\DomainLogicException;
 use Ambengers\EloquentWord\Exceptions\TemporaryFileMissedException;
-use Spatie\MediaLibrary\FileAdder\FileAdder;
-use Spatie\MediaLibrary\HasMedia\HasMedia;
+use Spatie\MediaLibrary\HasMedia;
+use Spatie\MediaLibrary\MediaCollections\FileAdder;
 
 trait InteractsWithMediaLibrary
 {
