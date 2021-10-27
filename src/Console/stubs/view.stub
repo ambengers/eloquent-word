@@ -1,0 +1,6 @@
+@php
+// You automatically have access to $word variable within your
+// view template, which is an instance of PhpWord::class
+$section = $word->addSection();
+
+@endphp
