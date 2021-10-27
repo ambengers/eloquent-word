@@ -3,7 +3,6 @@
 namespace Ambengers\EloquentWord\Console;
 
 use Illuminate\Console\GeneratorCommand;
-use Symfony\Component\Console\Input\InputOption;
 
 class EloquentWordMakeCommand extends GeneratorCommand
 {
@@ -12,7 +11,9 @@ class EloquentWordMakeCommand extends GeneratorCommand
      *
      * @var string
      */
-    protected $signature = 'make:eloquent-word {name}';
+    protected $signature = 'make:eloquent-word
+        {name : The name of the Eloquent Word class}
+        {--view= : Create a new view template on the specified location}';
 
     /**
      * The console command description.
@@ -50,7 +51,7 @@ class EloquentWordMakeCommand extends GeneratorCommand
     protected function writeViewTemplate()
     {
         $path = $this->viewPath(
-            str_replace('.', '/', $this->getView()).'.blade.php'
+            str_replace('.', '/', $this->option('view')).'.blade.php'
         );
 
         if (! $this->files->isDirectory(dirname($path))) {
@@ -58,16 +59,6 @@ class EloquentWordMakeCommand extends GeneratorCommand
         }
 
         $this->files->put($path, file_get_contents(__DIR__.'/stubs/view.stub'));
-    }
-
-    /**
-     * Get the view template.
-     *
-     * @return string
-     */
-    protected function getView()
-    {
-        return $this->option('view') ?? 'word.'.strtolower($this->argument('name'));
     }
 
     /**
@@ -80,7 +71,7 @@ class EloquentWordMakeCommand extends GeneratorCommand
     {
         $class = parent::buildClass($name);
 
-        $class = str_replace('DummyView', $this->getView(), $class);
+        $class = str_replace('DummyView', $this->option('view') ?? '', $class);
 
         return $class;
     }
@@ -104,17 +95,5 @@ class EloquentWordMakeCommand extends GeneratorCommand
     protected function getDefaultNamespace($rootNamespace)
     {
         return config('eloquent_word.namespace');
-    }
-
-    /**
-     * Get the console command options.
-     *
-     * @return array
-     */
-    protected function getOptions()
-    {
-        return [
-            ['view', 'v', InputOption::VALUE_OPTIONAL, 'Create a new view template on the specified location'],
-        ];
     }
 }
