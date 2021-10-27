@@ -3,7 +3,7 @@
 return [
 
     /**
-     * The namespace to use when generating Eloquent PDF class.
+     * The namespace to use when generating Eloquent Word class.
      */
     'namespace' => 'App\Word',
 
