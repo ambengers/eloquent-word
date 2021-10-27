@@ -13,16 +13,18 @@ class DummyClass extends AbstractEloquentWord
      */
     public function getData() : array
     {
-        return [];
+        return [
+            //
+        ];
     }
 
     /**
-     * The view file for the word document.
+     * The view template file for the word document.
      *
      * @return string
      */
     public function getView() : string
     {
-        return '';
+        return 'DummyView';
     }
 }

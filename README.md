@@ -34,7 +34,11 @@ You can generate your Eloquent Word class using the command
 ``` bash
 $ php artisan make:eloquent-word PostWord
 ```
-By default the class will be located at `App\Word` namespace. You can customize this in the config file.
+Optionally, you can pass a `--view` option to also generate a view template file.
+``` bash
+$ php artisan make:eloquent-word PostWord --view=posts.word
+```
+By default, the class will be located at `App\Word` namespace. You can customize this in the config file.
 
 Your Eloquent Word class will contain 2 methods:
  - `getData()` provides the data to be used on the view
@@ -68,9 +72,8 @@ Unlike PDF templates that uses html, Word templates are created using php script
 
 ```php
 @php
-
-// You automatically have access to $word variable within your
-// view template, which is an instance of PhpWord::class
+// You automatically have access to $word within your view template,
+// which is an instance of \PhpOffice\PhpWord\PhpWord::class...
 $section = $word->addSection();
 
 $section->addTitle($title);
@@ -78,7 +81,6 @@ $section->addTitle($title);
 $section->addTextBreak();
 
 $section->addText($body);
-
 @endphp
 ```
 Within your view template, you automatically have access to `$word` variable which will give you an instance of `PhpOffice\PhpWord\PhpWord` class. This will allow you to get started formatting your Word document.

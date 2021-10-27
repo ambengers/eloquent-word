@@ -1,0 +1,6 @@
+@php
+// You automatically have access to $word within your view template,
+// which is an instance of \PhpOffice\PhpWord\PhpWord::class...
+$section = $word->addSection();
+
+@endphp
