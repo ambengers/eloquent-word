@@ -5,14 +5,15 @@ Uses [PHPOffice/PHPWord](https://github.com/PHPOffice/PHPWord) package to genera
 [![CircleCI](https://circleci.com/gh/ambengers/eloquent-word/tree/master.svg?style=svg)](https://circleci.com/gh/ambengers/eloquent-word/tree/master)
 [![StyleCI](https://github.styleci.io/repos/419560299/shield?branch=master)](https://github.styleci.io/repos/419560299?branch=master)
 
-## Medialibrary Compatibility
+## Spatie Media Library Version Compatibility
 
-| Version  | Medialibrary |
-|:---------|:-------------|
-| v1.*     |~ 7.20        |
-| v2.*     |^ 8.0         |
-| v3.*     |^ 9.0         |
-| v4.*     |^ 10.0        |
+| Version | Medialibrary |
+|:--------|:-------------|
+| v1.*    |~ 7.20        |
+| v2.*    |^ 8.0         |
+| v3.*    |^ 9.0         |
+| v4.*    |^ 10.0        |
+| v5.*    |^ 10.0        |
 
 ## Installation
 
