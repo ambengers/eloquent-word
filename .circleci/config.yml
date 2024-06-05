@@ -11,7 +11,7 @@ jobs:
     docker:
       # Specify the version you desire here
       # See: https://circleci.com/developer/images/image/cimg/php
-      - image: cimg/php:7.4-node
+      - image: cimg/php:8.3-browsers
 
       # Specify service dependencies here if necessary
       # CircleCI maintains a library of pre-built images
@@ -27,7 +27,13 @@ jobs:
       - checkout
 
       - run: sudo apt update #  sudo apt install zlib1g-dev libsqlite3-dev
+      - run: sudo apt install -y libmagickwand-dev --no-install-recommends
+      - run: sudo rm -rf /var/lib/apt/lists/*
+      - run: sudo pecl install imagick
       - run: sudo docker-php-ext-install zip
+      - run: sudo docker-php-ext-install exif
+      - run: sudo docker-php-ext-enable exif
+      - run: sudo docker-php-ext-enable imagick
 
       # Download and cache dependencies
       - restore_cache:
@@ -43,29 +49,4 @@ jobs:
           key: v1-dependencies-{{ checksum "composer.json" }}
           paths:
             - ./vendor
-      - restore_cache:
-          keys:
-            - node-v1-{{ checksum "package.json" }}
-            - node-v1-
-      - run: yarn install
-      - save_cache:
-          key: node-v1-{{ checksum "package.json" }}
-          paths:
-            - node_modules
-
-      # prepare the database
-      - run: touch storage/testing.sqlite
-      - run: php artisan migrate --env=testing --database=sqlite_testing --force
-
-      # run tests with phpunit or codecept
-      #- run: ./vendor/bin/phpunit
-      - run: ./vendor/bin/codecept build
-      - run: ./vendor/bin/codecept run
-
-# Orchestrate jobs using workflows
-# See: https://circleci.com/docs/workflows/ & https://circleci.com/docs/configuration-reference/#workflows
-workflows:
-  sample: # This is the name of the workflow, feel free to change it to better match your workflow.
-    # Inside the workflow, you define the jobs you want to run.
-    jobs:
-      - build
+      - run: ./vendor/bin/phpunit
