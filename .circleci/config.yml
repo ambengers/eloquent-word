@@ -20,12 +20,11 @@ jobs:
       - checkout
 
       - run: sudo apt-get update
-      - run: sudo apt-get install -y libmagickwand-dev --no-install-recommends
-      - run: sudo pecl install imagick
+      - run: sudo apt-get install -y libmagickwand-dev
+      - run: sudo apt install php-imagick
       - run: sudo docker-php-ext-install zip
       - run: sudo docker-php-ext-install exif
       - run: sudo docker-php-ext-enable exif
-      - run: sudo docker-php-ext-enable imagick
 
       # Download and cache dependencies
       - restore_cache:
