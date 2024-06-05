@@ -11,14 +11,7 @@ jobs:
     docker:
       # Specify the version you desire here
       # See: https://circleci.com/developer/images/image/cimg/php
-      - image: cimg/php:8.3-browsers
-
-      # Specify service dependencies here if necessary
-      # CircleCI maintains a library of pre-built images
-      # documented at https://circleci.com/docs/circleci-images/
-      # - image: cimg/mysql:5.7
-      #
-      # - image: redis:2.8.19
+      - image: cimg/php:8.2-browsers
 
     # Add steps to the job
     # See: https://circleci.com/docs/jobs-steps/#steps-overview & https://circleci.com/docs/configuration-reference/#steps
@@ -26,9 +19,8 @@ jobs:
       # Checkout the code as the first step.
       - checkout
 
-      - run: sudo apt update #  sudo apt install zlib1g-dev libsqlite3-dev
-      - run: sudo apt install -y libmagickwand-dev --no-install-recommends
-      - run: sudo rm -rf /var/lib/apt/lists/*
+      - run: sudo apt-get update
+      - run: sudo apt-get install -y libmagickwand-dev --no-install-recommends
       - run: sudo pecl install imagick
       - run: sudo docker-php-ext-install zip
       - run: sudo docker-php-ext-install exif
